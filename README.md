@@ -28,7 +28,9 @@ openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout tls.key -out tls.crt
 
 #### Для RBAC
 openssl genrsa -out developer.key 2048
+
 openssl req -new -key developer.key -out developer.csr -subj "/CN=developer"
+
 openssl x509 -req -in developer.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out developer.crt -days 365
 
 ### Файлы манифестов
