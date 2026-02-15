@@ -1,0 +1,45 @@
+# Количество реплик
+replicaCount: 2
+
+# Настройки образов
+images:
+  nginx:
+    repository: nginx
+    tag: latest
+    pullPolicy: IfNotPresent
+  multitool:
+    repository: wbitt/network-multitool
+    tag: latest
+    pullPolicy: IfNotPresent
+
+# Настройки сервисов
+service:
+  nginx:
+    type: ClusterIP
+    port: 80
+    targetPort: 80
+  multitool:
+    type: ClusterIP
+    port: 8080
+    targetPort: 8080
+
+# Настройки ingress
+ingress:
+  enabled: false
+  host: myapp.example.com
+  tls: false
+
+# Ресурсы
+resources:
+  limits:
+    cpu: 500m
+    memory: 512Mi
+  requests:
+    cpu: 250m
+    memory: 256Mi
+
+# Переменные окружения
+env:
+  nginx: {}
+  multitool:
+    HTTP_PORT: "8080"
